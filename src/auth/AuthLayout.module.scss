@@ -1,0 +1,47 @@
+.main {
+  height: 100vh;
+  background-image:
+    url('https://uploads-ssl.webflow.com/58c00327a3a19f2169a348cf/58c387c6b6b941e437becd29_bg-gradient-1.svg'), 
+    linear-gradient(135deg, #7956ec, #2fb9f8);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainDark {
+  background-image: linear-gradient(120deg, #592EB5, #296CBB)
+}
+
+.formContainer {
+  margin: auto;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
+              0px 1px 1px 0px rgba(0,0,0,0.14),
+              0px 1px 3px 0px rgba(0,0,0,0.12);
+  border-radius: 4px;
+  padding: 15px;
+  background-color: white;
+  width: max-content;
+  min-width: 500px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.logo {
+  height: 60px;
+  margin-bottom: 1em;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
