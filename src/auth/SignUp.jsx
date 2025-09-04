@@ -19,8 +19,6 @@ const isPasswordValid = (password) => {
 	return password.length >= PASSWORD_MIN_LENGTH;
 };
 
-
-
 export const SignUp = ({ isLoading, onSubmit }) => {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);

@@ -14,6 +14,9 @@ import { SignUp } from "./SignUp";
 import { AuthLayout } from "./AuthLayout";
 import styles from "./Auth.module.scss";
 
+const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+const callbackUrl = process.env.REACT_APP_API_AUTH_CALLBACK;
+
 export const Auth = () => {
 	const [invitationId, setInvitationId] = useState("");
 	const [currentAuth, setCurrentAuth] = useState("LOGIN");
@@ -94,7 +97,7 @@ export const Auth = () => {
 	};
 
 	return (
-		<AuthLayout 
+		<AuthLayout
 			title={
 				currentAuth === "LOGIN"
 					? translate("pos.login.login")
@@ -104,7 +107,12 @@ export const Auth = () => {
 			}
 		>
 			{currentAuth === "LOGIN" ? (
-				<Login isLoading={isLoading} onSubmit={submit} />
+				<Login 
+					isLoading={isLoading} 
+					onSubmit={submit} 
+					googleClientId={googleClientId} 
+					callbackUrl={callbackUrl} 
+				/>
 			) : currentAuth === "SSO" ? (
 				<SSOAuth isLoading={isLoading} onSubmit={submit} />
 			) : currentAuth === "SIGNUP" ? (

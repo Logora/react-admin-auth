@@ -110,13 +110,13 @@ export const SSOAuth = ({ isLoading, onSubmit }) => {
 							value={userEmail}
 							onChange={(e) => setUserEmail(e.target.value)}
 						/>
-						   <Button
-							   type="submit"
-							   className={styles.submitButton}
-							   variant="contained"
-						   >
-							   {translate("pos.login.check_sso")}
-						   </Button>
+						<Button
+							type="submit"
+							className={styles.submitButton}
+							variant="contained"
+						>
+							{translate("pos.login.check_sso")}
+						</Button>
 						{error && (
 							<p className={styles.error}>
 								{translate("resources.update_password.notifications.error_sso")}

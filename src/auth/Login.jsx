@@ -1,20 +1,12 @@
 import { GoogleLoginButton } from "@logora/debate.auth.google_login_button";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { IconButton, InputAdornment } from "@mui/material";
-import Button from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
-import TextField from "@mui/material/TextField";
+import { TextField, IconButton, InputAdornment, Button, CircularProgress } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useTranslate } from "react-admin";
 import styles from "./Login.module.scss";
 
-const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-const callbackUrl = process.env.REACT_APP_API_AUTH_CALLBACK;
-
-
-
-export const Login = ({ isLoading, onSubmit }) => {
+export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const translate = useTranslate();
@@ -95,19 +87,19 @@ export const Login = ({ isLoading, onSubmit }) => {
 						),
 					}}
 				/>
-		       {isLoading ? (
-			       <div className={styles.submitButton}>
-				       <CircularProgress />
-			       </div>
-		       ) : (
-			       <Button
-				       type="submit"
-				       className={styles.submitButton}
-				       variant="contained"
-			       >
-				       {translate("pos.login.login")}
-			       </Button>
-		       )}
+				{isLoading ? (
+					<div className={styles.submitButton}>
+						<CircularProgress />
+					</div>
+				) : (
+					<Button
+						type="submit"
+						className={styles.submitButton}
+						variant="contained"
+					>
+						{translate("pos.login.login")}
+					</Button>
+				)}
 			</form>
 		</>
 	);

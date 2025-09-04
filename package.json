@@ -1,0 +1,38 @@
+{
+  "name": "react-admin-auth",
+  "version": "1.0.0",
+  "description": "Reusable authentication components for React-admin.",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [
+    "src/"
+  ],
+  "scripts": {
+    "start:demo": "cd demo && npm install && npm start",
+    "build": "echo 'Add your build script here'",
+    "test": "echo 'Add your test script here'"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@mui/material": "latest",
+    "@mui/icons-material": "latest"
+  },
+  "devDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-admin": "latest",
+    "react-scripts": "5.0.1",
+    "ra-data-fakerest": "latest"
+  },
+  "keywords": [
+    "react-admin",
+    "authentication",
+    "login",
+    "react"
+  ],
+  "author": "Henry Boisgibault <henry.boisgibault@proton.me>",
+  "license": "MIT"
+}
