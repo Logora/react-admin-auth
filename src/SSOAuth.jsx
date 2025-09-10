@@ -2,24 +2,17 @@ import { OAuth2Button } from "@logora/debate.auth.oauth2_button";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDataProvider, useTranslate } from "react-admin";
 import styles from "./SSOAuth.module.scss";
 
-const callbackUrl = process.env.REACT_APP_API_AUTH_CALLBACK;
-
-export const SSOAuth = ({ isLoading, onSubmit }) => {
+export const SSOAuth = ({ isLoading, onSubmit, callbackUrl }) => {
 	const dataProvider = useDataProvider();
 	const translate = useTranslate();
 	const [userEmail, setUserEmail] = useState("");
 	const [isChecked, setIsChecked] = useState(false);
 	const [ssoSettings, setSsoSettings] = useState();
 	const [error, setError] = useState(false);
-
-	useEffect(() => {
-		localStorage.removeItem("currentUser");
-		localStorage.removeItem("currentApplication");
-	}, []);
 
 	const handleSubmit = (event, code = null) => {
 		let userParams = {};
@@ -87,7 +80,7 @@ export const SSOAuth = ({ isLoading, onSubmit }) => {
 										src={ssoSettings?.logo_url}
 										alt=""
 									/>
-									{translate("pos.login.login_with", {
+									{translate("auth.sso.login_with", {
 										name: ssoSettings?.display_name,
 									})}
 								</div>
@@ -106,20 +99,16 @@ export const SSOAuth = ({ isLoading, onSubmit }) => {
 							className={styles.formInput}
 							id="email"
 							type="email"
-							label={translate("pos.login.sso_email")}
+							label={translate("auth.sso.labels.email")}
 							value={userEmail}
 							onChange={(e) => setUserEmail(e.target.value)}
 						/>
-						<Button
-							type="submit"
-							className={styles.submitButton}
-							variant="contained"
-						>
-							{translate("pos.login.check_sso")}
+						<Button type="submit" className={styles.submitButton}>
+							{translate("auth.sso.submit")}
 						</Button>
 						{error && (
 							<p className={styles.error}>
-								{translate("resources.update_password.notifications.error_sso")}
+								{translate("auth.sso.error")}
 							</p>
 						)}
 					</>

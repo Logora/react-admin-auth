@@ -1,8 +1,11 @@
 import { GoogleLoginButton } from "@logora/debate.auth.google_login_button";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { TextField, IconButton, InputAdornment, Button, CircularProgress } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import { IconButton, InputAdornment } from "@mui/material";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
 import { useTranslate } from "react-admin";
 import styles from "./Login.module.scss";
 
@@ -13,11 +16,6 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState("");
 	const [userEmail, setUserEmail] = useState(urlParams.get("email") || "");
-
-	useEffect(() => {
-		localStorage.removeItem("currentUser");
-		localStorage.removeItem("currentApplication");
-	}, []);
 
 	const handleSubmit = (event, code = null) => {
 		event?.preventDefault();
@@ -39,25 +37,23 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 	};
 
 	return (
-		<>
-			<div className={styles.socialLogin}>
+		<div className={styles.container}>
+			<div>
 				<GoogleLoginButton
-					text={translate("pos.login.google_login")}
+					text={translate("auth.login.google_login")}
 					googleClientId={googleClientId}
 					redirectUri={callbackUrl}
 					onCode={(code) => handleSubmit(null, code)}
 				/>
 			</div>
-			<div className={styles.separationContainer}>
-				<div>{translate("pos.login.or_login")}</div>
-			</div>
+			<div className={styles.separator}>{translate("auth.login.separator")}</div>
 			<form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
 				<TextField
 					required
 					className={styles.formInput}
 					id="email"
 					type="email"
-					label={translate("pos.login.email")}
+					label={translate("auth.login.labels.email")}
 					value={userEmail}
 					onChange={(e) => setUserEmail(e.target.value)}
 				/>
@@ -66,7 +62,7 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 					type={showPassword ? "text" : "password"}
 					className={styles.formInput}
 					id="password"
-					label={translate("pos.login.password")}
+					label={translate("auth.login.labels.password")}
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					InputProps={{
@@ -76,8 +72,8 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 									aria-label="toggle password visibility"
 									title={
 										showPassword
-											? translate("pos.login.hide_password")
-											: translate("pos.login.show_password")
+											? translate("auth.login.hide_password")
+											: translate("auth.login.show_password")
 									}
 									onClick={() => setShowPassword(!showPassword)}
 								>
@@ -88,19 +84,13 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 					}}
 				/>
 				{isLoading ? (
-					<div className={styles.submitButton}>
-						<CircularProgress />
-					</div>
+					<CircularProgress />
 				) : (
-					<Button
-						type="submit"
-						className={styles.submitButton}
-						variant="contained"
-					>
-						{translate("pos.login.login")}
+					<Button type="submit" className={styles.submitButton}>
+						{translate("auth.login.submit")}
 					</Button>
 				)}
 			</form>
-		</>
+		</div>
 	);
 };

@@ -121,8 +121,8 @@ export const Onboarding = () => {
 	};
 
 	return (
-		<AuthLayout 
-			title={translate("pos.login.onboarding_title")}
+		<AuthLayout
+			title={translate("auth.onboarding.title")}
 		>
 			{!finalStep ? (
 				<form
@@ -134,17 +134,13 @@ export const Onboarding = () => {
 						className={styles.formInput}
 						id="applicationUrl"
 						type="url"
-						label={translate("pos.login.application_url")}
+						label={translate("auth.onboarding.labels.application_url")}
 						value={applicationUrl}
 						onChange={(e) => setApplicationUrl(e.target.value)}
 					/>
-					   <Button
-						   type="submit"
-						   className={styles.submitButton}
-						   variant="contained"
-					   >
-						   {translate("pos.login.validate")}
-					   </Button>
+					<Button type="submit" className={styles.submitButton}>
+						{translate("auth.onboarding.validate")}
+					</Button>
 				</form>
 			) : (
 				<form
@@ -156,7 +152,7 @@ export const Onboarding = () => {
 						className={styles.formInput}
 						id="displayName"
 						type="string"
-						label={translate("pos.login.display_name")}
+						label={translate("auth.onboarding.labels.display_name")}
 						value={displayName}
 						onChange={(e) => setDisplayName(e.target.value)}
 					/>
@@ -166,7 +162,7 @@ export const Onboarding = () => {
 							className={styles.formInput}
 							id="shortname"
 							type="string"
-							label={translate("pos.login.shortname")}
+							label={translate("auth.onboarding.labels.shortname")}
 							value={shortname}
 							onChange={(e) => setShortname(e.target.value)}
 						/>
@@ -178,7 +174,7 @@ export const Onboarding = () => {
 							onChange={(e) => setLanguage(e.target.value)}
 							fullWidth
 						>
-							{LANGUAGES.map((lang, index) => (
+							{LANGUAGES.map((lang) => (
 								<MenuItem key={lang} value={lang.name}>
 									{lang.name.toUpperCase() + lang.icon}{" "}
 								</MenuItem>
@@ -186,17 +182,11 @@ export const Onboarding = () => {
 						</Select>
 					</FormControl>
 					{isLoading ? (
-						<div className={styles.submitButton}>
-							<CircularProgress />
-						</div>
+						<CircularProgress />
 					) : (
-						   <Button
-							   type="submit"
-							   className={styles.submitButton}
-							   variant="contained"
-						   >
-							   {translate("pos.login.create")}
-						   </Button>
+						<Button type="submit" className={styles.submitButton}>
+							{translate("auth.onboarding.submit")}
+						</Button>
 					)}
 				</form>
 			)}

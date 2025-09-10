@@ -1,31 +1,51 @@
 {
   "name": "react-admin-auth",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Reusable authentication components for React-admin.",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/react-admin-auth.umd.js",
+  "module": "dist/react-admin-auth.es.js",
   "files": [
-    "src/"
+    "dist"
   ],
   "scripts": {
-    "start:demo": "cd demo && npm install && npm start",
-    "build": "echo 'Add your build script here'",
-    "test": "echo 'Add your test script here'"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "demo": "cd demo && pnpm install && vite dev",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react-dom": ">=18.0.0",
+    "react-router-dom": ">=6.0.0",
+    "react-admin": ">=4.0.0",
+    "@mui/material": "^5.0.0",
+    "@mui/icons-material": "^5.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0"
   },
   "dependencies": {
     "@mui/material": "latest",
-    "@mui/icons-material": "latest"
+    "@mui/icons-material": "latest",
+    "@logora/debate.auth.google_login_button": "^0.0.100",
+    "@logora/debate.auth.oauth2_button": "^0.0.34",
+    "@logora/debate.util.lang_emojis": "^0.0.13",
+    "random-words": "^2.0.1",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router": "^6.0.0",
+    "react-router-dom": "^6.0.0",
     "react-admin": "latest",
-    "react-scripts": "5.0.1",
-    "ra-data-fakerest": "latest"
+    "ra-data-fakerest": "latest",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.0",
+    "sass": "^1.77.0",
+    "@types/react": "^18.0.0",
+    "@testing-library/dom": "^10.0.0",
+    "@testing-library/react": "^16.0.1"
   },
   "keywords": [
     "react-admin",
@@ -34,5 +54,5 @@
     "react"
   ],
   "author": "Henry Boisgibault <henry.boisgibault@proton.me>",
-  "license": "MIT"
+  "license": "GPL-3.0-only"
 }

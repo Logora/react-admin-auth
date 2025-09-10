@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Admin, Resource, ListGuesser } from "react-admin";
+import { BrowserRouter } from "react-router-dom";
+import authProvider from "./authProvider";
+import { Auth, routes as authenticationRoutes } from "react-admin-auth";
 import fakeDataProvider from "ra-data-fakerest";
-import { Login } from "./auth/Login";
 
 const dataProvider = fakeDataProvider({
     users: [
@@ -10,18 +12,14 @@ const dataProvider = fakeDataProvider({
     ]
 });
 
-const CustomLoginPage = (props) => (
-    <Login
-        isLoading={false}
-        onSubmit={(params) => {
-            alert("Login params: " + JSON.stringify(params));
-        }}
-        // Add other props here for testing
-    />
+const LoginPage = (props) => (
+  <BrowserRouter>
+    <Auth {...props} />
+  </BrowserRouter>
 );
 
 const App = () => (
-    <Admin dataProvider={dataProvider} loginPage={CustomLoginPage}>
+    <Admin dataProvider={dataProvider} authProvider={authProvider} loginPage={LoginPage}>
         <Resource name="users" list={ListGuesser} />
     </Admin>
 );
