@@ -9,6 +9,7 @@ Reusable authentication components for [React-admin](https://marmelab.com/react-
 - Easy integration with React-admin routing
 - Built with Material-UI and React-admin hooks
 
+
 ## Installation
 
 ```bash
@@ -19,6 +20,14 @@ pnpm add react-admin-auth
 
 **Peer dependencies:**  
 You must have `react`, `react-dom`, `react-admin`, `react-router-dom`, and `@mui/material` installed in your project.
+
+## Import the CSS
+
+To get the default styles, you must import the library CSS in your main entry file (e.g., `index.js` or `App.js`):
+
+```js
+import 'react-admin-auth/dist/style.css';
+```
 
 ## Components
 
@@ -101,9 +110,10 @@ See the source code for each component for available props.
 
 These components expect a compatible `authProvider` to be set up in your React-admin app, supporting methods like `login`, `logout`, `recoverPassword`, `resetPassword`, etc.
 
+
 ## Styling
 
-The package uses Material-UI and SCSS modules. You can override styles by targeting the generated class names or copying the components for further customization.
+The package uses Material-UI and SCSS modules. You can override styles by targeting the generated class names, using custom CSS, or copying the components for further customization.
 
 ## Internationalization (i18n)
 
