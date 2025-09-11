@@ -31,6 +31,12 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react-admin': 'ReactAdmin',
+          'react-router-dom': 'ReactRouterDOM',
+          '@mui/material': 'MaterialUI',
+          '@mui/icons-material': 'MaterialUIIcons',
+          '@emotion/react': 'EmotionReact',
+          '@emotion/styled': 'EmotionStyled'
         },
       },
     },

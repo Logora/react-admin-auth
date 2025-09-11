@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@logora/debate.auth.google_login_button':
-        specifier: ^0.0.107
-        version: 0.0.107(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.0.108
+        version: 0.0.108(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
       '@logora/debate.auth.oauth2_button':
         specifier: ^0.0.35
         version: 0.0.35(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
@@ -388,8 +388,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@logora/debate.auth.google_login_button@0.0.107':
-    resolution: {integrity: sha512-lLGJmMgHRACJy8Oh+ZXDIeCE+hm7Pyfk2T0UaosiNtfPA5CTY1xAuAlYAvjV2Da7ymMy7PnEvRPkmXrTZ8xAQQ==}
+  '@logora/debate.auth.google_login_button@0.0.108':
+    resolution: {integrity: sha512-pe40Aw1U6MimFMpWBzPKDnTxvSiLmPEj+84WqGDhqaIH2sOxSkT7pL62ypXE1C3puJEUZLJTkQWGROuIDm1Lgg==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-router: ^6.29.0
@@ -397,20 +397,6 @@ packages:
 
   '@logora/debate.auth.oauth2_button@0.0.35':
     resolution: {integrity: sha512-CWCxZ8TZ1jmnorn/g/QQoJyWOHnbGdMGAukcccwFne2+iWwUxKpG3raSyKp654NHO0qh1EJwB8LHr5ivj3RL6g==}
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0
-      react-router: ^6.29.0
-      react-router-dom: ^6.29.0
-
-  '@logora/debate.icons.icon@0.0.65':
-    resolution: {integrity: sha512-UPhqwgmNDBvvAuYVsCug16gjlh2NCpqg6p0qjVuxt4VsD7a/hMv9SGuyMwW0U6gS9bSfaPJK6wzOXyh6GxYRJQ==}
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0
-      react-router: ^6.29.0
-      react-router-dom: ^6.29.0
-
-  '@logora/debate.icons.icon_provider@0.0.65':
-    resolution: {integrity: sha512-fKLQkuhAihifuLOtPxaHBluL81OGPr0tXG+2Gi6SthoaszhzxBI2IS7PVI16YjtvXaM594c9vuDj/GQqsGvvSA==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-router: ^6.29.0
@@ -1709,10 +1695,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@logora/debate.auth.google_login_button@0.0.107(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
+  '@logora/debate.auth.google_login_button@0.0.108(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@logora/debate.auth.oauth2_button': 0.0.35(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
-      '@logora/debate.icons.icon': 0.0.65(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
       '@logora/debate.styles.spacing': 0.0.34(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))
       '@logora/debate.styles.theme': 0.0.47(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))
       prop-types: 15.8.1
@@ -1732,21 +1717,6 @@ snapshots:
       react-router-dom: 6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - react-dom
-
-  '@logora/debate.icons.icon@0.0.65(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@logora/debate.icons.icon_provider': 0.0.65(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
-      prop-types: 15.8.1
-      react: 18.3.1
-      react-router: 6.30.1(react@18.3.1)
-      react-router-dom: 6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-
-  '@logora/debate.icons.icon_provider@0.0.65(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.3.1
-      react-router: 6.30.1(react@18.3.1)
-      react-router-dom: 6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   '@logora/debate.styles.display@0.0.29(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))':
     dependencies:
