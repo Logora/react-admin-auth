@@ -1,0 +1,82 @@
+{
+    "auth": {
+        "forgot_password": {
+            "labels": {
+                "email": "Email"
+            },
+            "link": "Forgot password ?",
+            "redirect_to_login": "Go to login page",
+            "submit": "Recover my password",
+            "success": "If we recognize your email address, you will receive a link to retrieve your password.",
+            "title": "Password recovery"
+        },
+        "login": {
+            "google_login": "Connect with Google",
+            "hide_password": "Hide password",
+            "invalid_password": "Your password must contain at least %{minLength} characters.",
+            "labels": {
+                "email": "Email",
+                "password": "Password"
+            },
+            "link": "I already have an account",
+            "separator": "or e-mail connection",
+            "show_password": "Show password",
+            "submit": "Log in",
+            "title": "Log in"
+        },
+        "main": {
+            "error": "An error has occurred",
+            "error_credentials": "Invalid e-mail or password.",
+            "more_login": "Other ways to connect",
+            "separator": "or"
+        },
+        "onboarding": {
+            "labels": {
+                "application_url": "URL of your site",
+                "display_name": "Name of your organization",
+                "shortname": "Your application's unique identifier"
+            },
+            "submit": "Create my space",
+            "title": "Create your space",
+            "validate": "Validate URL"
+        },
+        "reset_password": {
+            "labels": {
+                "new_password": "New password",
+                "new_password_confirmation": "Confirm new password"
+            },
+            "notifications": {
+                "error": "An error occurred while updating your password.",
+                "mismatch": "The passwords do not match."
+            },
+            "redirect_to_login": "Go to login page",
+            "submit": "Update my password",
+            "success": "Your password has been updated.",
+            "title": "Password reset"
+        },
+        "signup": {
+            "google_signup": "Register with Google",
+            "hide_password": "Hide password",
+            "labels": {
+                "email": "Email",
+                "first_name": "First name",
+                "last_name": "Last name",
+                "password": "Password"
+            },
+            "link": "I don't have an account",
+            "separator": "or register by e-mail",
+            "show_password": "Show password",
+            "submit": "Sign up",
+            "title": "Sign up"
+        },
+        "sso": {
+            "error": "This e-mail or domain is not recognized for SSO connection.",
+            "labels": {
+                "email": "Email SSO"
+            },
+            "login_with": "Connection with %{name}",
+            "submit": "Check",
+            "use_sso": "Using SSO"
+        }
+    }
+}

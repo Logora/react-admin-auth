@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslate, useDataProvider } from "react-admin";
+import { useTranslate, useDataProvider, useAuthProvider } from "react-admin";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { AuthLayout } from "./AuthLayout";
@@ -8,7 +8,7 @@ import styles from "./ForgotPassword.module.scss";
 export const ForgotPassword = ({ loginUrl = "#/login" }) => {
 	const [email, setEmail] = useState("");
 	const [submitted, setSubmitted] = useState(false);
-	const dataProvider = useDataProvider();
+	const authProvider = useAuthProvider();
 	const translate = useTranslate();
 
 	const submit = (e) => {
@@ -18,7 +18,7 @@ export const ForgotPassword = ({ loginUrl = "#/login" }) => {
 		const urlParams = new URLSearchParams(queryString);
 		const application = urlParams.get("application");
 		const redirectUrl = urlParams.get("redirect_url");
-		dataProvider
+		authProvider
 			.recoverPassword({ email, application, redirectUrl })
 			.then(() => true)
 			.catch(() => true);

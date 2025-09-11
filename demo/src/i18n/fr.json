@@ -1,0 +1,83 @@
+{
+    "auth": {
+        "forgot_password": {
+            "labels": {
+                "email": "Email"
+            },
+            "link": "Mot de passe oublié ?",
+            "redirect_to_login": "Aller à la page connexion",
+            "submit": "Récupérer mon mot de passe",
+            "success": "Si nous reconnaissons votre adresse email, vous aller recevoir un lien pour récupérer votre mot de passe.",
+            "title": "Récupération du mot de passe"
+        },
+        "login": {
+            "google_login": "Connexion avec Google",
+            "hide_password": "Masquer le mot de passe",
+            "invalid_password": "Votre mot de passe doit contenir au moins %{minLength} caractères.",
+            "labels": {
+                "email": "Email",
+                "password": "Mot de passe"
+            },
+            "link": "J'ai déjà un compte",
+            "separator": "ou connexion avec e-mail",
+            "show_password": "Afficher le mot de passe",
+            "submit": "Connexion",
+            "title": "Connexion"
+        },
+        "main": {
+            "error": "Une erreur est survenue",
+            "error_credentials": "L'e-mail ou le mot de passe ne sont pas valides.",
+            "more_login": "Autres façons de se connecter",
+            "separator": "ou"
+        },
+        "onboarding": {
+            "labels": {
+                "application_url": "URL de votre site",
+                "display_name": "Nom de votre organisation",
+                "shortname": "Identifiant unique de votre application"
+            },
+            "submit": "Créer mon espace",
+            "title": "Créez votre espace",
+            "validate": "Valider l'URL"
+        },
+        "reset_password": {
+            "labels": {
+                "new_password": "Nouveau mot de passe",
+                "new_password_confirmation": "Confirmer le nouveau mot de passe"
+            },
+            "notifications": {
+                "error": "Une erreur est survenue lors de la mise à jour de votre mot de passe.",
+                "mismatch": "Les mots de passe ne correspondent pas."
+            },
+            "redirect_to_login": "Aller à la page connexion",
+            "submit": "Mettre à jour mon mot de passe",
+            "success": "Votre mot de passe à bien été mis à jour.",
+            "title": "Réinitialisation du mot de passe"
+        },
+        "signup": {
+            "google_signup": "Inscription avec Google",
+            "hide_password": "Masquer le mot de passe",
+            "invalid_password": "Votre mot de passe doit contenir au moins %{minLength} caractères.",
+            "labels": {
+                "email": "Email",
+                "first_name": "Prénom",
+                "last_name": "Nom",
+                "password": "Mot de passe"
+            },
+            "link": "Je n'ai pas de compte",
+            "separator": "ou inscription par e-mail",
+            "show_password": "Afficher le mot de passe",
+            "submit": "Inscription",
+            "title": "Inscription"
+        },
+        "sso": {
+            "error": "Cet e-mail ou domaine n'est pas reconnu pour la connexion SSO.",
+            "labels": {
+                "email": "Email SSO"
+            },
+            "login_with": "Connexion avec %{name}",
+            "submit": "Vérifier",
+            "use_sso": "Utiliser le SSO"
+        }
+    }
+}

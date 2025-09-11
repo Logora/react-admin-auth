@@ -36,6 +36,20 @@ const authProvider = {
     },
     // called to get user permissions
     getPermissions: () => Promise.resolve(),
+    recoverPassword: ({ email, application, redirectUrl }) => {
+        // Implement password recovery logic here
+        console.log(`Recover password for ${email}, application: ${application}, redirectUrl: ${redirectUrl}`);
+        return Promise.resolve();
+    },
+    resetPassword: ({ newPassword, confirmPassword, resetToken }) => {
+        // Implement password reset logic here
+        if (newPassword === confirmPassword) {
+            console.log(`Reset password with token ${resetToken}`);
+            return Promise.resolve({ data: true });
+        } else {
+            return Promise.reject('Passwords do not match');
+        }
+    }
 };
 
 export default authProvider;

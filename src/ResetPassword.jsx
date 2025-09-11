@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslate, useDataProvider } from "react-admin";
+import { useTranslate, useAuthProvider } from "react-admin";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { AuthLayout } from "./AuthLayout";
@@ -10,7 +10,7 @@ export const ResetPassword = ({ loginUrl = "#/login"}) => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [status, setStatus] = useState("idle"); // 'idle' | 'success' | 'error' | 'mismatch'
     const [redirectUrl, setRedirectUrl] = useState(loginUrl);
-    const dataProvider = useDataProvider();
+    const authProvider = useAuthProvider();
     const translate = useTranslate();
 
     const submit = (e) => {
@@ -22,7 +22,7 @@ export const ResetPassword = ({ loginUrl = "#/login"}) => {
         if (newPassword !== confirmPassword) {
             setStatus("mismatch");
         } else {
-            dataProvider
+            authProvider
                 .resetPassword({ newPassword, confirmPassword, resetToken })
                 .then((response) => {
                     if (response.data) {
