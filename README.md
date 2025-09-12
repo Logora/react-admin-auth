@@ -21,14 +21,6 @@ pnpm add react-admin-auth
 **Peer dependencies:**  
 You must have `react`, `react-dom`, `react-admin`, `react-router-dom`, and `@mui/material` installed in your project.
 
-## Import the CSS
-
-To get the default styles, you must import the library CSS in your main entry file (e.g., `index.js` or `App.js`):
-
-```js
-import 'react-admin-auth/dist/style.css';
-```
-
 ## Components
 
 - `Auth`: Main authentication component (handles login, signup, SSO, etc.)
@@ -44,15 +36,19 @@ import 'react-admin-auth/dist/style.css';
 
 ### 1. Add Auth Routes to React-admin
 
-Import the `routes` array and add it to your React-admin `<Admin>` component using the `customRoutes` prop:
+Add the `<Auth>` component as your loginPage.
+Import the `routes` array and add it to your React-admin `<Admin>` component using the `customRoutes` prop.
+Import the library CSS in your main entry file (e.g., `index.js` or `App.js`):
 
 ```jsx
 import { Admin } from "react-admin";
-import { routes as authRoutes } from "react-admin-auth";
+import { Auth, routes as authRoutes } from "react-admin-auth";
+import 'react-admin-auth/dist/style.css';
 
 export const App = () => (
   <Admin
     // ...other props
+    loginPage={Auth}
     customRoutes={authRoutes}
   >
     {/* resources */}
@@ -62,8 +58,9 @@ export const App = () => (
 
 This will add the following routes :
 
-- `/accept_invitation`
+- `/login`
 - `/signup`
+- `/accept_invitation`
 - `/sso`
 - `/forgot_password`
 - `/reset_password`
@@ -111,10 +108,20 @@ See the source code for each component for available props.
 
 These components expect a compatible `authProvider` to be set up in your React-admin app, supporting methods like `login`, `logout`, `recoverPassword`, `resetPassword`, etc.
 
+## Theme
 
-## Styling
+All authentication components share a common layout (`AuthLayout`) that can be themed using two variables:
 
-The package uses Material-UI and SCSS modules. You can override styles by targeting the generated class names, using custom CSS, or copying the components for further customization.
+- `background`: Sets the background image, color, or gradient for the layout.
+- `logo`: Sets the logo displayed at the top of the authentication screens.
+
+You can provide these variables to customize the look and feel of your authentication pages. For a practical example of how to use these theme variables, see the demo app included in this repository:
+
+[`/demo/src/theme.js`](./demo/src/theme.js)
+
+The demo shows how to define and apply a custom background and logo to the authentication layout.
+
+You can also pass a `className` prop to all components to further customize them.
 
 ## Internationalization (i18n)
 
@@ -130,6 +137,9 @@ All components use i18n keys compatible with React-admin's translation system. Y
 This allows you to fully localize all texts, labels, errors, and button messages. See the source code for the full list of keys used in each component.
 
 For a practical example of i18n integration and translation keys, see the demo app included in this repository. The demo provides a working setup with translations you can use as a reference for your own project.
+
+You can find an example locale file here:
+[`/demo/src/i18n/en.json`](./demo/src/i18n/en.json)
 
 ## License
 
