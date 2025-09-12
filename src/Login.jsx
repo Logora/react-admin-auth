@@ -9,13 +9,24 @@ import React, { useState } from "react";
 import { useTranslate } from "react-admin";
 import styles from "./Login.module.scss";
 
-export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
+export const Login = ({
+	isLoading,
+	onSubmit,
+	googleClientId,
+	callbackUrl,
+	className = ""
+}) => {
 	const translate = useTranslate();
 	const [showPassword, setShowPassword] = useState(false);
+	const getDefaultEmail = () => {
+		if (typeof window !== "undefined") {
+			const urlParams = new URLSearchParams(window.location.search);
+			return urlParams.get("email") || "";
+		}
+		return "";
+	};
 	const [password, setPassword] = useState("");
-	const [userEmail, setUserEmail] = useState(urlParams.get("email") || "");
+	const [userEmail, setUserEmail] = useState(getDefaultEmail());
 
 	const handleSubmit = (event, code = null) => {
 		event?.preventDefault();
@@ -37,17 +48,21 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 	};
 
 	return (
-		<div className={styles.container}>
-			<div>
-				<GoogleLoginButton
-					text={translate("auth.login.google_login")}
-					googleClientId={googleClientId}
-					redirectUri={callbackUrl}
-					onCode={(code) => handleSubmit(null, code)}
-				/>
-			</div>
-			<div className={styles.separator}>{translate("auth.login.separator")}</div>
-			<form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
+		<div className={`${styles.container} ${className}`.trim()}>
+			{googleClientId && callbackUrl &&
+				<>
+					<GoogleLoginButton
+						text={translate("auth.login.google_login")}
+						googleClientId={googleClientId}
+						redirectUri={callbackUrl}
+						onCode={(code) => handleSubmit(null, code)}
+					/>
+					<div className={styles.separator}>{translate("auth.login.separator")}</div>
+				</>
+			}
+			<form className={styles.form} onSubmit={(event) => handleSubmit(event)} aria-label={translate("auth.login.title")}
+				autoComplete="on"
+			>
 				<TextField
 					required
 					className={styles.formInput}
@@ -56,6 +71,11 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 					label={translate("auth.login.labels.email")}
 					value={userEmail}
 					onChange={(e) => setUserEmail(e.target.value)}
+					inputProps={{
+						"aria-required": true,
+						"aria-label": translate("auth.login.labels.email"),
+						"autoComplete": "email"
+					}}
 				/>
 				<TextField
 					required
@@ -65,16 +85,17 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 					label={translate("auth.login.labels.password")}
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
+					inputProps={{
+						"aria-required": true,
+						"aria-label": translate("auth.login.labels.password"),
+						"autoComplete": "current-password"
+					}}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position="end">
 								<IconButton
-									aria-label="toggle password visibility"
-									title={
-										showPassword
-											? translate("auth.login.hide_password")
-											: translate("auth.login.show_password")
-									}
+									aria-label={showPassword ? translate("auth.login.hide_password") : translate("auth.login.show_password")}
+									title={showPassword ? translate("auth.login.hide_password") : translate("auth.login.show_password")}
 									onClick={() => setShowPassword(!showPassword)}
 								>
 									{showPassword ? <Visibility /> : <VisibilityOff />}
@@ -86,7 +107,7 @@ export const Login = ({ isLoading, onSubmit, googleClientId, callbackUrl }) => {
 				{isLoading ? (
 					<CircularProgress />
 				) : (
-					<Button type="submit" className={styles.submitButton}>
+					<Button type="submit" className={styles.submitButton} aria-label={translate("auth.login.submit")}>
 						{translate("auth.login.submit")}
 					</Button>
 				)}

@@ -1,4 +1,7 @@
+import { defaultTheme } from 'react-admin';
+
 export const theme = {
+  ...defaultTheme,
   palette: {
     background: {
       default: '#f5f6fa',

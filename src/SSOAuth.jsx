@@ -78,7 +78,7 @@ export const SSOAuth = ({ isLoading, onSubmit, callbackUrl }) => {
 									<img
 										className={styles.providerImg}
 										src={ssoSettings?.logo_url}
-										alt=""
+										alt={ssoSettings?.display_name || "SSO Provider Logo"}
 									/>
 									{translate("auth.sso.login_with", {
 										name: ssoSettings?.display_name,
@@ -92,26 +92,31 @@ export const SSOAuth = ({ isLoading, onSubmit, callbackUrl }) => {
 				<form
 					className={styles.form}
 					onSubmit={(event) => handleDomainCheck(event)}
+					aria-label={translate("auth.sso.title")}
+					autoComplete="on"
 				>
-					<>
-						<TextField
-							required
-							className={styles.formInput}
-							id="email"
-							type="email"
-							label={translate("auth.sso.labels.email")}
-							value={userEmail}
-							onChange={(e) => setUserEmail(e.target.value)}
-						/>
-						<Button type="submit" className={styles.submitButton}>
-							{translate("auth.sso.submit")}
-						</Button>
-						{error && (
-							<p className={styles.error}>
-								{translate("auth.sso.error")}
-							</p>
-						)}
-					</>
+					<TextField
+						required
+						className={styles.formInput}
+						id="email"
+						type="email"
+						label={translate("auth.sso.labels.email")}
+						value={userEmail}
+						onChange={(e) => setUserEmail(e.target.value)}
+						inputProps={{
+							"aria-required": true,
+							"aria-label": translate("auth.sso.labels.email"),
+							"autoComplete": "email"
+						}}
+					/>
+					<Button type="submit" className={styles.submitButton} aria-label={translate("auth.sso.submit")}>
+						{translate("auth.sso.submit")}
+					</Button>
+					{error && (
+						<p className={styles.error} role="alert" aria-live="assertive" tabIndex={0}>
+							{translate("auth.sso.error")}
+						</p>
+					)}
 				</form>
 			)}
 		</>

@@ -13,11 +13,18 @@ const isPasswordValid = (password, minLength) => {
     return password.length >= minLength;
 };
 
-export const SignUp = ({ isLoading, onSubmit, googleClientId, callbackUrl, passwordMinLength = 7 }) => {
+export const SignUp = ({ 
+    isLoading, 
+    onSubmit, 
+    googleClientId, 
+    callbackUrl, 
+    passwordMinLength = 7,
+    className = ""
+}) => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const translate = useTranslate();
-    const [showPassword, setShowPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState("");
     const [userFirstName, setUserFirstName] = useState(
         urlParams.get("first_name") || "",
@@ -67,37 +74,51 @@ export const SignUp = ({ isLoading, onSubmit, googleClientId, callbackUrl, passw
     };
 
     return (
-        <div className={styles.container}>
-            <div>
-                <GoogleLoginButton
-                    text={translate("auth.signup.google_signup")}
-                    googleClientId={googleClientId}
-                    redirectUri={callbackUrl}
-                    onCode={(code) => handleSubmit(null, code)}
-                />
-            </div>
-            <div className={styles.separator}>{translate("auth.signup.separator")}</div>
-            <form className={styles.form} onSubmit={(event) => handleSubmit(event)}>
-                {error && <div className={styles.error}>{error}</div>}
+        <div className={`${styles.container} ${className}`.trim()}>
+            {googleClientId && callbackUrl &&
+                <>
+                    <GoogleLoginButton
+                        text={translate("auth.signup.google_signup")}
+                        googleClientId={googleClientId}
+                        redirectUri={callbackUrl}
+                        onCode={(code) => handleSubmit(null, code)}
+                    />
+                    <div className={styles.separator}>{translate("auth.signup.separator")}</div>
+                </>
+            }
+            <form className={styles.form} onSubmit={(event) => handleSubmit(event)} aria-label={translate("auth.signup.title")}
+                autoComplete="on"
+            >
+                {error && <div className={styles.error} role="alert" aria-live="assertive" tabIndex={0}>{error}</div>}
 
                 <div className={styles.nameContainer}>
                     <TextField
                         required
-                        type="string"
+                        type="text"
                         className={styles.formInput}
                         id="firstName"
                         label={translate("auth.signup.labels.first_name")}
                         value={userFirstName}
                         onChange={(e) => setUserFirstName(e.target.value)}
+                        inputProps={{
+                            "aria-required": true,
+                            "aria-label": translate("auth.signup.labels.first_name"),
+                            "autoComplete": "given-name"
+                        }}
                     />
                     <TextField
                         required
-                        type="string"
+                        type="text"
                         className={styles.formInput}
                         id="lastName"
                         label={translate("auth.signup.labels.last_name")}
                         value={userLastName}
                         onChange={(e) => setUserLastName(e.target.value)}
+                        inputProps={{
+                            "aria-required": true,
+                            "aria-label": translate("auth.signup.labels.last_name"),
+                            "autoComplete": "family-name"
+                        }}
                     />
                 </div>
                 <TextField
@@ -108,6 +129,11 @@ export const SignUp = ({ isLoading, onSubmit, googleClientId, callbackUrl, passw
                     label={translate("auth.signup.labels.email")}
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
+                    inputProps={{
+                        "aria-required": true,
+                        "aria-label": translate("auth.signup.labels.email"),
+                        "autoComplete": "email"
+                    }}
                 />
                 <TextField
                     required
@@ -117,16 +143,17 @@ export const SignUp = ({ isLoading, onSubmit, googleClientId, callbackUrl, passw
                     label={translate("auth.signup.labels.password")}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    inputProps={{
+                        "aria-required": true,
+                        "aria-label": translate("auth.signup.labels.password"),
+                        "autoComplete": "new-password"
+                    }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
                                 <IconButton
-                                    aria-label="toggle password visibility"
-                                    title={
-                                        showPassword
-                                            ? translate("auth.signup.hide_password")
-                                            : translate("auth.signup.show_password")
-                                    }
+                                    aria-label={showPassword ? translate("auth.signup.hide_password") : translate("auth.signup.show_password")}
+                                    title={showPassword ? translate("auth.signup.hide_password") : translate("auth.signup.show_password")}
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
                                     {showPassword ? <Visibility /> : <VisibilityOff />}
@@ -138,7 +165,7 @@ export const SignUp = ({ isLoading, onSubmit, googleClientId, callbackUrl, passw
                 {isLoading ? (
                     <CircularProgress />
                 ) : (
-                    <Button type="submit" className={styles.submitButton}>
+                    <Button type="submit" className={styles.submitButton} aria-label={translate("auth.signup.submit")}>
                         {translate("auth.signup.submit")}
                     </Button>
                 )}

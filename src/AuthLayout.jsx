@@ -2,7 +2,11 @@ import React from "react";
 import styles from "./AuthLayout.module.scss";
 import { useTheme } from '@mui/material/styles';
 
-export const AuthLayout = ({ children, title }) => {
+export const AuthLayout = ({ 
+	children, 
+	title, 
+	className = "" 
+}) => {
 	const theme = useTheme();
 	const backgroundImage = theme?.auth?.backgroundImage;
 	const logo = theme?.auth?.logo;
@@ -11,10 +15,10 @@ export const AuthLayout = ({ children, title }) => {
 		: {};
 
 	return (
-		<div
-			className={styles.layout}
-			style={style}
-		>
+		   <div
+			   className={`${styles.layout} ${className}`.trim()}
+			   style={style}
+		   >
 			<div className={styles.container}>
 				<div className={styles.header}>
 					{logo && (

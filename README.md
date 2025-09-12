@@ -103,6 +103,7 @@ See the source code for each component for available props.
   ssoUrl="#/sso"
   googleClientId="YOUR_GOOGLE_CLIENT_ID"
   callbackUrl="YOUR_CALLBACK_URL"
+  enableSSO={true}
 />
 ```
 

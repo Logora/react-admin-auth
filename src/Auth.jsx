@@ -26,7 +26,8 @@ export const Auth = ({
     forgotPasswordUrl = "#/forgot_password",
     ssoUrl = "#/sso",
     googleClientId,
-    callbackUrl
+    callbackUrl,
+    enableSSO = false
 }) => {
     const [invitationId, setInvitationId] = useState("");
     const [currentAuth, setCurrentAuth] = useState(AuthMode.LOGIN);
@@ -131,10 +132,14 @@ export const Auth = ({
                 ) : null}
                 {currentAuth !== AuthMode.SSO ? (
                     <>
-                        <div className={styles.separator}>{translate("auth.main.separator")}</div>
-                        <a href={ssoUrl} className={styles.ssoContainer}>
-                            {translate("auth.sso.use_sso")}
-                        </a>
+                        {enableSSO && (
+                            <>
+                                <div className={styles.separator}>{translate("auth.main.separator")}</div>
+                                <a href={ssoUrl} className={styles.ssoContainer}>
+                                    {translate("auth.sso.use_sso")}
+                                </a>
+                            </>
+                        )}
                         <div className={styles.footerLinks}>
                             <a
                                 href={currentAuth === AuthMode.LOGIN ? signupUrl : loginUrl}

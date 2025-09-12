@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -15,6 +14,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-admin": "^5.11.1",
+    "react-admin-auth": "file:../",
     "ra-data-fakerest": "^5.11.1",
     "ra-i18n-polyglot": "^5.11.1",
     "ra-language-french": "^5.11.1",

@@ -4,11 +4,6 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  resolve: {
-    alias: {
-       'react-admin-auth': path.resolve(__dirname, '../src'),
-    },
-  },
   server: {
     port: 3000,
     open: true,
