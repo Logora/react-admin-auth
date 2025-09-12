@@ -18,9 +18,21 @@ import slugify from "slugify";
 import { AuthLayout } from "./AuthLayout";
 import styles from "./Onboarding.module.scss";
 
-const allowedAppTypes = ["debateSpace", "parlement", "socialModeration"];
+const generateShortname = (name) => {
+	const randomWords = generate({
+		exactly: 1,
+		wordsPerString: 2,
+		separator: "-",
+		maxLength: 5,
+	});
 
-export const Onboarding = () => {
+	return `${slugify(name)}-${randomWords}`;
+};
+
+export const Onboarding = ({ 
+	allowedAppTypes = ["debateSpace", "parlement", "socialModeration"],
+	className = "" 
+}) => {
 	const translate = useTranslate();
 	const dataProvider = useDataProvider();
 	const authProvider = useAuthProvider();
@@ -44,17 +56,6 @@ export const Onboarding = () => {
 	const getAllowedDomains = (url) => {
 		const parsedUrl = new URL(url);
 		return [`${parsedUrl.protocol}//${parsedUrl.hostname}`];
-	};
-
-	const generateShortname = (name) => {
-		const randomWords = generate({
-			exactly: 1,
-			wordsPerString: 2,
-			separator: "-",
-			maxLength: 5,
-		});
-
-		return `${slugify(name)}-${randomWords}`;
 	};
 
 	const validateUrl = (event) => {
@@ -123,6 +124,7 @@ export const Onboarding = () => {
 	return (
 		<AuthLayout
 			title={translate("auth.onboarding.title")}
+			className={className}
 		>
 			{!finalStep ? (
 				<form
