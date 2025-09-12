@@ -26,20 +26,23 @@ const dataProvider = fakeDataProvider({
   ]
 });
 
+const googleClientId = "YOUR_GOOGLE_CLIENT_ID";
+const callbackUrl = "YOUR_REDIRECT_URI";
+
 const App = () => {
   return (
     <Admin
       dataProvider={dataProvider}
       authProvider={authProvider}
       i18nProvider={i18nProvider}
-      loginPage={() => <Auth enableSSO={true} />}
+      loginPage={() => <Auth enableSSO={true} googleClientId={googleClientId} callbackUrl={callbackUrl} />}
       theme={theme}
     >
       <Resource name="users" list={ListGuesser} />
       <CustomRoutes noLayout>
-        <Route path="/accept_invitation" element={<Auth />} />
-        <Route path="/signup" element={<Auth />} />
-        <Route path="/sso" element={<Auth />} />
+        <Route path="/accept_invitation" element={<Auth googleClientId={googleClientId} callbackUrl={callbackUrl} />} />
+        <Route path="/signup" element={<Auth googleClientId={googleClientId} callbackUrl={callbackUrl} />} />
+        <Route path="/sso" element={<Auth googleClientId={googleClientId} callbackUrl={callbackUrl} />} />
         <Route path="/forgot_password" element={<ForgotPassword />} />
         <Route path="/reset_password" element={<ResetPassword />} />
         <Route path="/onboarding" element={<Onboarding />} />

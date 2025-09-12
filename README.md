@@ -108,6 +108,12 @@ This allows you to fully localize all texts, labels, errors, and button messages
 
 For a practical example of i18n integration and translation keys, see the [example locale file](./demo/src/i18n/en.json) from the demo app included in this repository.
 
-## License
+## Running the Demo
 
-GPL-3.0-only
+To try out the authentication components in a real app, you can run the included demo:
+
+```bash
+pnpm run demo
+```
+
+The demo showcases all authentication screens, theming, and i18n integration.
