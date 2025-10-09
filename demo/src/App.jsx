@@ -45,7 +45,7 @@ const App = () => {
         <Route path="/sso" element={<Auth googleClientId={googleClientId} callbackUrl={callbackUrl} />} />
         <Route path="/forgot_password" element={<ForgotPassword />} />
         <Route path="/reset_password" element={<ResetPassword />} />
-        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/onboarding" element={<Onboarding appType={"debate"} />} />
       </CustomRoutes>
     </Admin>
   );

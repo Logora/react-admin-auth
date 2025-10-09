@@ -13,7 +13,6 @@ import {
 	useRedirect,
 	useTranslate,
 } from "react-admin";
-import { useSearchParams } from "react-router-dom";
 import slugify from "slugify";
 import { AuthLayout } from "./AuthLayout";
 import styles from "./Onboarding.module.scss";
@@ -30,27 +29,22 @@ const generateShortname = (name) => {
 };
 
 export const Onboarding = ({ 
-	allowedAppTypes = ["debateSpace", "parlement", "socialModeration"],
+	appType,
+	showApplicationNameInput = true,
+	showApplicationUrlInput = true,
+	defaultLanguage = "fr",
 	className = "" 
 }) => {
 	const translate = useTranslate();
 	const dataProvider = useDataProvider();
 	const authProvider = useAuthProvider();
 	const redirectTo = useRedirect();
-	const [searchParams] = useSearchParams();
-	let appType =
-		(allowedAppTypes.includes(searchParams.get("appType")) &&
-			searchParams.get("appType")) ||
-		"debateSpace";
-	if (window.location.hostname.includes("legiwatch.fr")) {
-		appType = "parlement";
-	}
 	const [applicationUrl, setApplicationUrl] = useState("");
-	const [shortname, setShortname] = useState("");
+	const [applicationName, setApplicationName] = useState("");
 	const [displayName, setDisplayName] = useState("");
 	const [allowedDomains, setAllowedDomains] = useState([]);
-	const [language, setLanguage] = useState("fr");
-	const [finalStep, setFinalStep] = useState(appType !== "debateSpace");
+	const [language, setLanguage] = useState(defaultLanguage);
+	const [finalStep, setFinalStep] = useState(!showApplicationUrlInput);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const getAllowedDomains = (url) => {
@@ -65,7 +59,7 @@ export const Onboarding = ({
 		const displayName = name.charAt(0).toUpperCase() + name.slice(1);
 		const allowedDomains = getAllowedDomains(applicationUrl);
 
-		setShortname(generateShortname(name));
+		setApplicationName(generateShortname(name));
 		setDisplayName(displayName);
 		setAllowedDomains(allowedDomains);
 		setFinalStep(true);
@@ -75,35 +69,16 @@ export const Onboarding = ({
 		event?.preventDefault();
 		const adminId = JSON.parse(localStorage.getItem("currentUser")).id;
 		setIsLoading(true);
-
-		const initSettings = {
-			...(appType !== "debateSpace" && {
-				modules: {
-					...(appType === "parlement" && {
-						parliament: true,
-						debateSpace: false,
-						sources: false,
-					}),
-					...(appType === "socialModeration" && {
-						socialModeration: true,
-						debateSpace: false,
-						sources: false,
-					}),
-				},
-			}),
-		};
-
 		dataProvider
 			.create("applications", {
 				data: {
-					name:
-						appType === "debateSpace"
-							? shortname
+					name: showApplicationNameInput
+							? applicationName
 							: generateShortname(displayName),
 					display_name: displayName,
 					url: applicationUrl,
 					allowed_domains: allowedDomains,
-					init_settings: initSettings,
+					app_type: appType,
 					admin_id: adminId,
 					language: language,
 				},
@@ -158,15 +133,15 @@ export const Onboarding = ({
 						value={displayName}
 						onChange={(e) => setDisplayName(e.target.value)}
 					/>
-					{appType === "debateSpace" && (
+					{showApplicationNameInput && (
 						<TextField
 							required
 							className={styles.formInput}
-							id="shortname"
+							id="applicationName"
 							type="string"
 							label={translate("auth.onboarding.labels.shortname")}
-							value={shortname}
-							onChange={(e) => setShortname(e.target.value)}
+							value={applicationName}
+							onChange={(e) => setApplicationName(e.target.value)}
 						/>
 					)}
 					<FormControl variant="outlined" className={styles.formInput}>
