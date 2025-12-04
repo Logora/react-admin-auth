@@ -1,6 +1,6 @@
 {
   "name": "react-admin-auth",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Reusable authentication components for React-admin.",
   "main": "dist/react-admin-auth.umd.js",
   "module": "dist/react-admin-auth.es.js",
