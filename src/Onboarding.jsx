@@ -28,12 +28,13 @@ const generateShortname = (name) => {
 	return `${slugify(name)}-${randomWords}`;
 };
 
-export const Onboarding = ({ 
+export const Onboarding = ({
 	appType,
 	showApplicationNameInput = true,
 	showApplicationUrlInput = true,
+	showLanguageInput = true,
 	defaultLanguage = "fr",
-	className = "" 
+	className = ""
 }) => {
 	const translate = useTranslate();
 	const dataProvider = useDataProvider();
@@ -73,8 +74,8 @@ export const Onboarding = ({
 			.create("applications", {
 				data: {
 					name: showApplicationNameInput
-							? applicationName
-							: generateShortname(displayName),
+						? applicationName
+						: generateShortname(displayName),
 					display_name: displayName,
 					url: applicationUrl,
 					allowed_domains: allowedDomains,
@@ -144,20 +145,22 @@ export const Onboarding = ({
 							onChange={(e) => setApplicationName(e.target.value)}
 						/>
 					)}
-					<FormControl variant="outlined" className={styles.formInput}>
-						<Select
-							id="language_select"
-							value={language}
-							onChange={(e) => setLanguage(e.target.value)}
-							fullWidth
-						>
-							{LANGUAGES.map((lang) => (
-								<MenuItem key={lang} value={lang.name}>
-									{lang.name.toUpperCase() + lang.icon}{" "}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
+					{showLanguageInput && (
+						<FormControl variant="outlined" className={styles.formInput}>
+							<Select
+								id="language_select"
+								value={language}
+								onChange={(e) => setLanguage(e.target.value)}
+								fullWidth
+							>
+								{LANGUAGES.map((lang) => (
+									<MenuItem key={lang} value={lang.name}>
+										{lang.name.toUpperCase() + lang.icon}{" "}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+					)}
 					{isLoading ? (
 						<CircularProgress />
 					) : (
