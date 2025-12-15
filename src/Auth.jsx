@@ -27,7 +27,8 @@ export const Auth = ({
     ssoUrl = "#/sso",
     googleClientId,
     callbackUrl,
-    enableSSO = false
+    enableSSO = false,
+    onAuth,
 }) => {
     const [invitationId, setInvitationId] = useState("");
     const [currentAuth, setCurrentAuth] = useState(AuthMode.LOGIN);
@@ -124,11 +125,11 @@ export const Auth = ({
         >
             <div className={styles.container}>
                 {currentAuth === AuthMode.LOGIN ? (
-                    <Login isLoading={isLoading} onSubmit={submit} googleClientId={googleClientId} callbackUrl={callbackUrl} />
+                    <Login isLoading={isLoading} onSubmit={submit} onAuth={onAuth} googleClientId={googleClientId} callbackUrl={callbackUrl} />
                 ) : currentAuth === AuthMode.SSO ? (
                     <SSOAuth isLoading={isLoading} onSubmit={submit} callbackUrl={callbackUrl} />
                 ) : currentAuth === AuthMode.SIGNUP ? (
-                    <SignUp isLoading={isLoading} onSubmit={submit} googleClientId={googleClientId} callbackUrl={callbackUrl} />
+                    <SignUp isLoading={isLoading} onSubmit={submit} onAuth={onAuth} googleClientId={googleClientId} callbackUrl={callbackUrl} />
                 ) : null}
                 {currentAuth !== AuthMode.SSO ? (
                     <>

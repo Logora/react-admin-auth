@@ -16,6 +16,7 @@ const isPasswordValid = (password, minLength) => {
 export const SignUp = ({ 
     isLoading, 
     onSubmit, 
+    onAuth,
     googleClientId, 
     callbackUrl, 
     passwordMinLength = 7,
@@ -53,6 +54,7 @@ export const SignUp = ({
                 assertion_type: "google",
                 assertion: code,
             };
+            onAuth && onAuth({ type: "signup", method: "google" });
             onSubmit(userParams);
         } else {
             const userParams = {
@@ -69,6 +71,7 @@ export const SignUp = ({
                 assertion: assertion,
                 assertion_type: "form",
             };
+            onAuth && onAuth({ type: "signup", method: "form"    });
             onSubmit(assertionParams);
         }
     };

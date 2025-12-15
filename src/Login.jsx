@@ -12,6 +12,7 @@ import styles from "./Login.module.scss";
 export const Login = ({
 	isLoading,
 	onSubmit,
+	onAuth,
 	googleClientId,
 	callbackUrl,
 	className = ""
@@ -36,6 +37,7 @@ export const Login = ({
 				assertion_type: "google",
 				assertion: code,
 			};
+			onAuth && onAuth({ type: "login", method: "google" });
 			onSubmit(userParams);
 		} else {
 			const userParams = {
@@ -43,6 +45,7 @@ export const Login = ({
 				username: userEmail,
 				password: password,
 			};
+			onAuth && onAuth({ type: "login", method: "password" });
 			onSubmit(userParams);
 		}
 	};
