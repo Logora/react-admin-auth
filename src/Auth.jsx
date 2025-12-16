@@ -4,10 +4,9 @@ import {
     useAuthProvider,
     useDataProvider,
     useNotify,
-    useRedirect,
     useTranslate,
 } from "react-admin";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams, Link } from "react-router-dom";
 import { Login } from "./Login";
 import { SSOAuth } from "./SSOAuth";
 import { SignUp } from "./SignUp";
@@ -27,7 +26,8 @@ export const Auth = ({
     ssoUrl = "#/sso",
     googleClientId,
     callbackUrl,
-    enableSSO = false
+    enableSSO = false,
+    defaultRedirect = "/"
 }) => {
     const [invitationId, setInvitationId] = useState("");
     const [currentAuth, setCurrentAuth] = useState(AuthMode.LOGIN);
@@ -36,10 +36,10 @@ export const Auth = ({
     const location = useLocation();
     const authProvider = useAuthProvider();
     const dataProvider = useDataProvider();
-    const redirectTo = useRedirect();
     const notify = useNotify();
     const translate = useTranslate();
     const navigate = useNavigate();
+    const redirectParam = searchParams.get("redirect") || defaultRedirect;
 
     useEffect(() => {
         localStorage.removeItem("currentUser");
@@ -68,12 +68,12 @@ export const Auth = ({
             .create("application_invitations", {
                 invitation_id: invitationId,
             })
-            .then(() => {
-                authProvider.getIdentity().then(() => {
-                    setIsLoading(false);
-                    redirectTo("/#");
-                });
-            })
+                    .then(() => {
+                        authProvider.getIdentity().then(() => {
+                            setIsLoading(false);
+                            navigate(defaultRedirect, { replace: true });
+                        });
+                    })
             .catch(() => {
                 // Erreur mauvais mail 401
                 // Rediriger vers onboarding
@@ -89,24 +89,12 @@ export const Auth = ({
                     handleInvitation();
                 } else {
                     setIsLoading(false);
-                    const redirectParam = searchParams.get("redirect");
-                    if (redirectParam) {
-                        try {
-                            window.location.href = redirectParam;
-                        } catch (e) {
-                            navigate("/");
-                        }
-                    } else {
-                        navigate({
-                            pathname: "/",
-                            search: searchParams.toString(),
-                        });
-                    }
+                    navigate(redirectParam || defaultRedirect, { replace: true });
                 }
             })
             .catch((error) => {
                 setIsLoading(false);
-                if (error.response && error.response.status === 400) {
+                if (error.response?.status === 400) {
                     notify(
                         translate(
                             "auth.main.error_credentials",
@@ -144,32 +132,32 @@ export const Auth = ({
                         {enableSSO && (
                             <>
                                 <div className={styles.separator}>{translate("auth.main.separator")}</div>
-                                <a href={`${ssoUrl}${window.location.search || ""}`} className={styles.ssoContainer}>
+                                <Link to={`${ssoUrl}${window.location.search || ""}`} className={styles.ssoContainer}>
                                     {translate("auth.sso.use_sso")}
-                                </a>
+                                </Link>
                             </>
                         )}
                         <div className={styles.footerLinks}>
-                            <a
-                                href={`${currentAuth === AuthMode.LOGIN ? signupUrl : loginUrl}${window.location.search || ""}`}
+                            <Link
+                                to={`${currentAuth === AuthMode.LOGIN ? signupUrl : loginUrl}${window.location.search || ""}`}
                                 className={styles.footerLink}
                             >
                                 {currentAuth === AuthMode.LOGIN
                                     ? translate("auth.signup.link")
                                     : translate("auth.login.link")}
-                            </a>
+                            </Link>
                             {currentAuth !== AuthMode.SIGNUP && (
-                                <a href={`${forgotPasswordUrl}${window.location.search || ""}`} className={styles.footerLink}>
+                                <Link to={`${forgotPasswordUrl}${window.location.search || ""}`} className={styles.footerLink}>
                                     {translate("auth.forgot_password.link")}
-                                </a>
+                                </Link>
                             )}
                         </div>
                     </>
                 ) : (
                     <div className={styles.footerLinks}>
-                        <a href={loginUrl} className={styles.footerLink}>
+                        <Link to={loginUrl} className={styles.footerLink}>
                             {translate("auth.main.more_login")}
-                        </a>
+                        </Link>
                     </div>
                 )}
                 <Notification />
