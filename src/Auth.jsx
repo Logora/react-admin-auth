@@ -89,15 +89,24 @@ export const Auth = ({
                     handleInvitation();
                 } else {
                     setIsLoading(false);
-                    navigate({
-                        pathname: "/",
-                        search: searchParams.toString(),
-                    });
+                    const redirectParam = searchParams.get("redirect");
+                    if (redirectParam) {
+                        try {
+                            window.location.href = redirectParam;
+                        } catch (e) {
+                            navigate("/");
+                        }
+                    } else {
+                        navigate({
+                            pathname: "/",
+                            search: searchParams.toString(),
+                        });
+                    }
                 }
             })
             .catch((error) => {
                 setIsLoading(false);
-                if (error.response.status === 400) {
+                if (error.response && error.response.status === 400) {
                     notify(
                         translate(
                             "auth.main.error_credentials",
@@ -135,14 +144,14 @@ export const Auth = ({
                         {enableSSO && (
                             <>
                                 <div className={styles.separator}>{translate("auth.main.separator")}</div>
-                                <a href={ssoUrl} className={styles.ssoContainer}>
+                                <a href={`${ssoUrl}${window.location.search || ""}`} className={styles.ssoContainer}>
                                     {translate("auth.sso.use_sso")}
                                 </a>
                             </>
                         )}
                         <div className={styles.footerLinks}>
                             <a
-                                href={currentAuth === AuthMode.LOGIN ? signupUrl : loginUrl}
+                                href={`${currentAuth === AuthMode.LOGIN ? signupUrl : loginUrl}${window.location.search || ""}`}
                                 className={styles.footerLink}
                             >
                                 {currentAuth === AuthMode.LOGIN
@@ -150,7 +159,7 @@ export const Auth = ({
                                     : translate("auth.login.link")}
                             </a>
                             {currentAuth !== AuthMode.SIGNUP && (
-                                <a href={forgotPasswordUrl} className={styles.footerLink}>
+                                <a href={`${forgotPasswordUrl}${window.location.search || ""}`} className={styles.footerLink}>
                                     {translate("auth.forgot_password.link")}
                                 </a>
                             )}
