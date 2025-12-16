@@ -1,6 +1,6 @@
 {
   "name": "react-admin-auth",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Reusable authentication components for React-admin.",
   "main": "dist/react-admin-auth.umd.js",
   "module": "dist/react-admin-auth.es.js",
@@ -27,7 +27,7 @@
     "react-router-dom": ">=6.0.0"
   },
   "dependencies": {
-    "@logora/debate.auth.google_login_button": "^0.0.108",
+    "@logora/debate.auth.google_login_button": "^0.0.114",
     "@logora/debate.auth.oauth2_button": "^0.0.35",
     "@logora/debate.util.lang_emojis": "^0.0.13",
     "random-words": "^2.0.1",
