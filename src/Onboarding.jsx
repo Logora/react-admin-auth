@@ -10,9 +10,9 @@ import React, { useState } from "react";
 import {
 	useAuthProvider,
 	useDataProvider,
-	useRedirect,
 	useTranslate,
 } from "react-admin";
+import { useNavigate } from "react-router-dom";
 import slugify from "slugify";
 import { AuthLayout } from "./AuthLayout";
 import styles from "./Onboarding.module.scss";
@@ -34,12 +34,13 @@ export const Onboarding = ({
 	showApplicationUrlInput = true,
 	showLanguageInput = true,
 	defaultLanguage = "fr",
-	className = ""
+	className = "",
+	defaultRedirect = "/"
 }) => {
 	const translate = useTranslate();
 	const dataProvider = useDataProvider();
 	const authProvider = useAuthProvider();
-	const redirectTo = useRedirect();
+	const navigate = useNavigate();
 	const [applicationUrl, setApplicationUrl] = useState("");
 	const [applicationName, setApplicationName] = useState("");
 	const [displayName, setDisplayName] = useState("");
@@ -47,6 +48,7 @@ export const Onboarding = ({
 	const [language, setLanguage] = useState(defaultLanguage);
 	const [finalStep, setFinalStep] = useState(!showApplicationUrlInput);
 	const [isLoading, setIsLoading] = useState(false);
+	const redirectParam = searchParams.get("redirect") || defaultRedirect;
 
 	const getAllowedDomains = (url) => {
 		const parsedUrl = new URL(url);
@@ -87,7 +89,7 @@ export const Onboarding = ({
 			.then(() => {
 				authProvider.getIdentity().then((identity) => {
 					setIsLoading(false);
-					redirectTo("/#");
+					navigate(redirectParam, { replace: true });
 				});
 			})
 			.catch((e) => {

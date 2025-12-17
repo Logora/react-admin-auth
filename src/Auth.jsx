@@ -71,7 +71,7 @@ export const Auth = ({
                     .then(() => {
                         authProvider.getIdentity().then(() => {
                             setIsLoading(false);
-                            navigate(defaultRedirect, { replace: true });
+                            navigate(redirectParam, { replace: true });
                         });
                     })
             .catch(() => {
@@ -89,7 +89,7 @@ export const Auth = ({
                     handleInvitation();
                 } else {
                     setIsLoading(false);
-                    navigate(redirectParam || defaultRedirect, { replace: true });
+                    navigate(redirectParam, { replace: true });
                 }
             })
             .catch((error) => {
