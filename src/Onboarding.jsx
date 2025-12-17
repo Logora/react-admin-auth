@@ -12,7 +12,7 @@ import {
 	useDataProvider,
 	useTranslate,
 } from "react-admin";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import slugify from "slugify";
 import { AuthLayout } from "./AuthLayout";
 import styles from "./Onboarding.module.scss";
@@ -41,6 +41,7 @@ export const Onboarding = ({
 	const dataProvider = useDataProvider();
 	const authProvider = useAuthProvider();
 	const navigate = useNavigate();
+	const [searchParams] = useSearchParams();
 	const [applicationUrl, setApplicationUrl] = useState("");
 	const [applicationName, setApplicationName] = useState("");
 	const [displayName, setDisplayName] = useState("");
