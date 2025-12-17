@@ -67,7 +67,7 @@ export const Auth = ({
 
     const navigateOut = () => {
         setIsLoading(false)
-        if (enableOnboarding) {
+        if (enableOnboarding && currentAuth === AuthMode.SIGNUP) {
             navigate(`${onboardingUrl}?redirect=${encodeURIComponent(redirectParam)}`, { replace: true });
         } else {
             navigate(redirectParam, { replace: true })
