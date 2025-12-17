@@ -69,9 +69,22 @@ export const Onboarding = ({
 		setFinalStep(true);
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event?.preventDefault();
-		const adminId = JSON.parse(localStorage.getItem("currentUser")).id;
+		let currentUser = localStorage.getItem("currentUser");
+		let adminId;
+		if (!currentUser) {
+			try {
+				const user = await authProvider.getUser();
+				adminId = user.id;
+			} catch (e) {
+				console.log(e);
+				setIsLoading(false);
+				return;
+			}
+		} else {
+			adminId = JSON.parse(currentUser).id;
+		}
 		setIsLoading(true);
 		dataProvider
 			.create("applications", {
@@ -95,8 +108,6 @@ export const Onboarding = ({
 			})
 			.catch((e) => {
 				console.log(e);
-				// Erreur mauvais mail 401
-				// Rediriger vers onboarding
 			});
 	};
 
