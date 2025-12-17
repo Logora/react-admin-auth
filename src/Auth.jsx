@@ -24,9 +24,11 @@ export const Auth = ({
     signupUrl = "#/signup",
     forgotPasswordUrl = "#/forgot_password",
     ssoUrl = "#/sso",
+    onboardingUrl = "#/onboarding",
     googleClientId,
     callbackUrl,
     enableSSO = false,
+    enableOnboarding = false,
     defaultRedirect = "/"
 }) => {
     const [invitationId, setInvitationId] = useState("");
@@ -63,17 +65,25 @@ export const Auth = ({
         setInvitationId(invitationId);
     }, [location.pathname]);
 
+    const navigateOut = () => {
+        setIsLoading(false)
+        if (enableOnboarding) {
+            navigate(`${onboardingUrl}?redirect=${encodeURIComponent(redirectParam)}`, { replace: true });
+        } else {
+            navigate(redirectParam, { replace: true })
+        }
+    }
+
     const handleInvitation = () => {
         dataProvider
             .create("application_invitations", {
                 invitation_id: invitationId,
             })
-                    .then(() => {
-                        authProvider.getIdentity().then(() => {
-                            setIsLoading(false);
-                            navigate(redirectParam, { replace: true });
-                        });
-                    })
+            .then(() => {
+                authProvider.getIdentity().then(() => {
+                    navigateOut();
+                });
+            })
             .catch(() => {
                 // Erreur mauvais mail 401
                 // Rediriger vers onboarding
@@ -81,15 +91,14 @@ export const Auth = ({
     };
 
     const submit = (authParams) => {
-        setIsLoading(true);
+        setIsLoading(true)
         authProvider
             .authenticate(authParams)
             .then(() => {
                 if (invitationId) {
-                    handleInvitation();
+                    handleInvitation()
                 } else {
-                    setIsLoading(false);
-                    navigate(redirectParam, { replace: true });
+                    navigateOut()
                 }
             })
             .catch((error) => {
