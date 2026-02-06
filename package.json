@@ -27,8 +27,8 @@
     "react-router-dom": ">=6.0.0"
   },
   "dependencies": {
-    "@logora/debate.auth.google_login_button": "^0.0.114",
-    "@logora/debate.auth.oauth2_button": "^0.0.35",
+    "@logora/debate.auth.google_login_button": "^0.0.116",
+    "@logora/debate.auth.oauth2_button": "^0.0.37",
     "@logora/debate.util.lang_emojis": "^0.0.13",
     "random-words": "^2.0.1",
     "slugify": "^1.6.6"
