@@ -40,6 +40,5 @@ export default defineConfig({
         },
       },
     },
-    minify: false, // Disable minification to see real sizes
   },
 });
