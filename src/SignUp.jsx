@@ -1,4 +1,4 @@
-import { GoogleLoginButton } from "@logora/debate.auth.google_login_button";
+import { GoogleLoginButton } from "@logora/debate";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { IconButton, InputAdornment } from "@mui/material";

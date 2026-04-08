@@ -1,4 +1,4 @@
-import { LANGUAGES } from "@logora/debate.util.lang_emojis";
+import { LANGUAGES } from "@logora/debate";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";

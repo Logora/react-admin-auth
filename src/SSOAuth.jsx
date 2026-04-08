@@ -1,4 +1,4 @@
-import { OAuth2Button } from "@logora/debate.auth.oauth2_button";
+import { OAuth2Button } from "@logora/debate";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";

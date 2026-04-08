@@ -12,8 +12,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "demo": "cd demo && pnpm install && vite dev",
-    "prepare": "npm run build",
-    "upgrade-components": "pnpm update '@logora/*' --latest"
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "@emotion/react": ">=11.0.0",
@@ -27,9 +26,7 @@
     "react-router-dom": ">=6.0.0"
   },
   "dependencies": {
-    "@logora/debate.auth.google_login_button": "^0.0.116",
-    "@logora/debate.auth.oauth2_button": "^0.0.37",
-    "@logora/debate.util.lang_emojis": "^0.0.13",
+    "@logora/debate": "0.1.1",
     "random-words": "^2.0.1",
     "slugify": "^1.6.6"
   },
