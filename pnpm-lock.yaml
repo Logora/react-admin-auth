@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@logora/debate':
-        specifier: 0.1.1
-        version: 0.1.1(@types/react@18.3.24)(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.2.0
+        version: 0.2.0(@types/react@18.3.24)(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
       random-words:
         specifier: ^2.0.1
         version: 2.0.1
@@ -506,8 +506,8 @@ packages:
     peerDependencies:
       yjs: '>=13.5.22'
 
-  '@logora/debate@0.1.1':
-    resolution: {integrity: sha512-0zzawMVqciqEodb+RY0g3pgOTC8RzviwQbkEajiURK3tFFGrlb4PxmwcI9JrrKHgr0q67k/tRAqBSuTrddqCAw==}
+  '@logora/debate@0.2.0':
+    resolution: {integrity: sha512-pI1dFexKDUHTNXz1ddc74Vvm4MCkHDFpYgNJiF0rpPGvXo3E+2sSkhHwcMYYfrUI5qJ31H6uPY7sfQ6Mgp3Deg==}
     engines: {node: '>=18.0'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
@@ -2257,7 +2257,7 @@ snapshots:
       '@lexical/selection': 0.38.2
       lexical: 0.38.2
 
-  '@logora/debate@0.1.1(@types/react@18.3.24)(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
+  '@logora/debate@0.2.0(@types/react@18.3.24)(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@lexical/headless': 0.38.2
       '@lexical/html': 0.38.2
