@@ -29,6 +29,7 @@ export const Auth = ({
     callbackUrl,
     enableSSO = false,
     enableOnboarding = false,
+    shouldShowOnboarding = () => true,
     defaultRedirect = "/"
 }) => {
     const [invitationId, setInvitationId] = useState("");
@@ -67,7 +68,7 @@ export const Auth = ({
 
     const navigateOut = () => {
         setIsLoading(false)
-        if (enableOnboarding && currentAuth === AuthMode.SIGNUP) {
+        if (enableOnboarding && currentAuth === AuthMode.SIGNUP && shouldShowOnboarding()) {
             navigate(`${onboardingUrl}?redirect=${encodeURIComponent(redirectParam)}`, { replace: true });
         } else {
             navigate(redirectParam, { replace: true })
